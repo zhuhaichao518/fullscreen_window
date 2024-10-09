@@ -3,6 +3,8 @@
 // package as the core of your plugin.
 // ignore: avoid_web_libraries_in_flutter
 import 'package:web/web.dart' as web show window;
+import 'dart:html';
+import 'dart:js_util' as js_util;
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -23,6 +25,11 @@ class FullScreenWindowWeb extends FullScreenWindowPlatform {
   Future<void> setFullScreen(bool isFullScreen) async {
     if (isFullScreen) {
       web.window.document.documentElement?.requestFullscreen();
+      final navigator = js_util.getProperty(window, 'navigator');
+      final keyboard = js_util.getProperty(navigator, 'keyboard');
+      js_util.callMethod(keyboard, 'lock', [
+        ['Escape']  // 锁定 ESC 键
+      ]);
     } else {
       web.window.document.exitFullscreen();
     }
