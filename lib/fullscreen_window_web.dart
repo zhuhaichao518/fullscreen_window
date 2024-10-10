@@ -28,7 +28,7 @@ class FullScreenWindowWeb extends FullScreenWindowPlatform {
       final navigator = js_util.getProperty(window, 'navigator');
       final keyboard = js_util.getProperty(navigator, 'keyboard');
       js_util.callMethod(keyboard, 'lock', [
-        ['Escape']  // 锁定 ESC 键
+        ['Escape'] // 锁定 ESC 键
       ]);
     } else {
       web.window.document.exitFullscreen();
@@ -41,5 +41,4 @@ class FullScreenWindowWeb extends FullScreenWindowPlatform {
     var height = web.window.screen.height;
     return Size(width.toDouble(), height.toDouble());
   }
-
 }

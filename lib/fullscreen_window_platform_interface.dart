@@ -31,5 +31,4 @@ abstract class FullScreenWindowPlatform extends PlatformInterface {
   Future<Size> getScreenSize(BuildContext? context) {
     throw UnimplementedError();
   }
-
 }
