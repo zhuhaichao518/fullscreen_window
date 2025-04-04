@@ -1,7 +1,6 @@
 // In order to *not* need this ignore, consider extracting the "web" version
 // of your plugin as a separate package, instead of inlining it in the same
 // package as the core of your plugin.
-// ignore: avoid_web_libraries_in_flutter
 import 'package:web/web.dart' as web show window;
 import 'dart:html';
 import 'dart:js_util' as js_util;
@@ -27,9 +26,10 @@ class FullScreenWindowWeb extends FullScreenWindowPlatform {
       web.window.document.documentElement?.requestFullscreen();
       final navigator = js_util.getProperty(window, 'navigator');
       final keyboard = js_util.getProperty(navigator, 'keyboard');
-      js_util.callMethod(keyboard, 'lock', [
-        ['Escape'] // 锁定 ESC 键
-      ]);
+      // js_util.callMethod(keyboard, 'lock', [
+      //   ['Escape'] // 锁定 ESC 键
+      // ]);
+      js_util.callMethod(keyboard, 'lock', []);
     } else {
       web.window.document.exitFullscreen();
     }
